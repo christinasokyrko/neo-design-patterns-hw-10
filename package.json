@@ -1,0 +1,25 @@
+{
+    "name": "todo-app-command-pattern",
+    "version": "1.0.0",
+    "description": "TODO application using Command pattern",
+    "main": "src/main.ts",
+    "scripts": {
+        "start": "ts-node src/main.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/christinasokyrko/neo-design-patterns-hw-10.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/christinasokyrko/neo-design-patterns-hw-10/issues"
+    },
+    "homepage": "https://github.com/christinasokyrko/neo-design-patterns-hw-10#readme",
+    "devDependencies": {
+        "@types/node": "^24.1.0",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.9.2"
+    }
+}
