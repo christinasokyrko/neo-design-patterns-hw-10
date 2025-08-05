@@ -3,7 +3,7 @@ import { TaskList } from '../models/TaskList';
 import { Task } from '../models/Task';
 
 export class UpdateTaskCommand extends AbstractCommand {
-  private previousTask: { [key: string]: Task[keyof Task] } = {};
+  private previousTask?: Task;
 
   constructor(
     private taskList: TaskList,
@@ -13,19 +13,13 @@ export class UpdateTaskCommand extends AbstractCommand {
     super();
   }
 
- execute(): void {
-  const current = this.taskList.updateTask(this.taskId, this.updates);
-  if (current) {
-    this.previousTask = {};
-    for (const key in this.updates) {
-      const typedKey = key as keyof Task;
-      const value = current[typedKey];
-      if (value !== undefined) {
-        this.previousTask[typedKey] = value as Task[keyof Task];
-      }
+  execute(): void {
+    const currentTask = this.taskList.getAllTasks().find(task => task.id === this.taskId);
+    if (currentTask) {
+      this.previousTask = { ...currentTask };
     }
+    this.taskList.updateTask(this.taskId, this.updates);
   }
-}
 
   undo(): void {
     if (this.previousTask) {
